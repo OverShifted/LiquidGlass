@@ -1,0 +1,4 @@
+[submodule "vendor/OverEngine"]
+	path = vendor/OverEngine
+	url = https://github.com/OverShifted/OverEngine
+	branch = liquid-glass
