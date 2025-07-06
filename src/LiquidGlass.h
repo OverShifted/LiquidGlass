@@ -30,6 +30,8 @@ private:
     Vector3 m_Position = { 0, 0, 0 };
     Vector3 m_CameraPosition = { 0, 0, 0 };
 
+	bool mouseControl = false;
+
 	Ref<FrameBuffer> fb = nullptr;
 	// Ref<FrameBuffer> finalFb = nullptr;
 

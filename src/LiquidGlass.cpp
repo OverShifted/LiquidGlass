@@ -121,36 +121,36 @@ void LiquidGlass::OnUpdate(TimeStep deltaTime)
 {
 	lastDeltaTime = deltaTime;
 
-	// {
-	// 	bool anyKeyPressed = false;
-	// 	if (Input::IsKeyPressed(KeyCode::W)) {
-	// 		m_Position.y += deltaTime * velocityMultiplier * velocity;
-	// 		anyKeyPressed = true;
-	// 	}
+	if (!mouseControl) {
+		bool anyKeyPressed = false;
+		if (Input::IsKeyPressed(KeyCode::W)) {
+			m_Position.y += deltaTime * velocityMultiplier * velocity;
+			anyKeyPressed = true;
+		}
 
-	// 	if (Input::IsKeyPressed(KeyCode::S)) {
-	// 		m_Position.y -= deltaTime * velocityMultiplier * velocity;
-	// 		anyKeyPressed = true;
-	// 	}
+		if (Input::IsKeyPressed(KeyCode::S)) {
+			m_Position.y -= deltaTime * velocityMultiplier * velocity;
+			anyKeyPressed = true;
+		}
 
-	// 	if (Input::IsKeyPressed(KeyCode::D)) {
-	// 		m_Position.x += deltaTime * velocityMultiplier * velocity;
-	// 		anyKeyPressed = true;
-	// 	}
+		if (Input::IsKeyPressed(KeyCode::D)) {
+			m_Position.x += deltaTime * velocityMultiplier * velocity;
+			anyKeyPressed = true;
+		}
 
-	// 	if (Input::IsKeyPressed(KeyCode::A)) {
-	// 		m_Position.x -= deltaTime * velocityMultiplier * velocity;
-	// 		anyKeyPressed = true;
-	// 	}
+		if (Input::IsKeyPressed(KeyCode::A)) {
+			m_Position.x -= deltaTime * velocityMultiplier * velocity;
+			anyKeyPressed = true;
+		}
 
-	// 	if (anyKeyPressed) {
-	// 		velocityMultiplier += 1.0 * deltaTime;
-	// 	} else {
-	// 		velocityMultiplier -= 3.0 * deltaTime;
-	// 	}
+		if (anyKeyPressed) {
+			velocityMultiplier += 1.0 * deltaTime;
+		} else {
+			velocityMultiplier -= 3.0 * deltaTime;
+		}
 
-	// 	velocityMultiplier = Math::Clamp(velocityMultiplier, 0.0f, 1.0f);
-	// }
+		velocityMultiplier = Math::Clamp(velocityMultiplier, 0.0f, 1.0f);
+	}
 
 	{
 		bool anyKeyPressed = false;
@@ -184,17 +184,17 @@ void LiquidGlass::OnUpdate(TimeStep deltaTime)
 	}
 
 	Window& window = Application::Get().GetWindow();
-	Vector2 mousePos = 2.0f * Input::GetMousePosition() / Vector2(window.GetWidth(), window.GetHeight()) - 1.0f;
-	mousePos.y *= -1.0f;
-	Mat4x4 vpMatrix = m_Camera.GetProjection() * glm::translate(IDENTITY_MAT4X4, m_CameraPosition);
-	Mat4x4 vpMatrixInverse = glm::inverse(vpMatrix);
-	Vector4 mouseInWorld = vpMatrixInverse * Vector4(mousePos, 1.0, 1.0);
 
-	m_Position.x = mouseInWorld.x;
-	m_Position.y = mouseInWorld.y;
-
-	// OE_INFO("{} {} {} {}", mousePos.x, mousePos.y, mouseInWorld.z, mouseInWorld.w);
-	// OE_INFO("{} {} {} {}", mouseInWorld.x, mouseInWorld.y, mouseInWorld.z, mouseInWorld.w);
+	if (mouseControl) {
+		Vector2 mousePos = 2.0f * Input::GetMousePosition() / Vector2(window.GetWidth(), window.GetHeight()) - 1.0f;
+		mousePos.y *= -1.0f;
+		Mat4x4 vpMatrix = m_Camera.GetProjection() * glm::translate(IDENTITY_MAT4X4, m_CameraPosition);
+		Mat4x4 vpMatrixInverse = glm::inverse(vpMatrix);
+		Vector4 mouseInWorld = vpMatrixInverse * Vector4(mousePos, 1.0, 1.0);
+		
+		m_Position.x = mouseInWorld.x;
+		m_Position.y = mouseInWorld.y;
+	}
 
 	// Draw the bg scene
 	{
@@ -270,6 +270,8 @@ void LiquidGlass::OnImGuiRender()
 		}
 		ImGui::EndCombo();
 	}
+
+	ImGui::Checkbox("Move with mouse", &mouseControl);
 
 	ImGui::Dummy({ 0.0, 8.0 });
 
