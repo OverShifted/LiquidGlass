@@ -26,8 +26,17 @@ cmake --build build
 ```
 
 ## Screenshots
+Seasons:
+![spring](https://raw.githubusercontent.com/OverShifted/LiquidGlass/refs/heads/master/assets/showcase/spring.png)
+![summer](https://raw.githubusercontent.com/OverShifted/LiquidGlass/refs/heads/master/assets/showcase/summer.png)
+![autumn](https://raw.githubusercontent.com/OverShifted/LiquidGlass/refs/heads/master/assets/showcase/autumn.png)
+![winter](https://raw.githubusercontent.com/OverShifted/LiquidGlass/refs/heads/master/assets/showcase/winter.png)
+
+Full effect:
 ![Full effect](https://raw.githubusercontent.com/OverShifted/LiquidGlass/refs/heads/master/assets/showcase/full.png)
 
+Without blur or noise:
 ![Just refraction](https://raw.githubusercontent.com/OverShifted/LiquidGlass/refs/heads/master/assets/showcase/just-refraction.png)
 
+Without blur or noise, but refracted in the reverse direction:
 ![Just refraction, but inverted](https://raw.githubusercontent.com/OverShifted/LiquidGlass/refs/heads/master/assets/showcase/just-refraction-inverted.png)
