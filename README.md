@@ -1,5 +1,8 @@
 # Liquid glass
+
 A shader inspired by Apple's [Liquid Glass](https://en.wikipedia.org/wiki/Liquid_Glass) design language. 
+
+[Uploading liquid-glass-newspaper.mp4…](https://github.com/user-attachments/assets/ce061ae0-5e8b-4852-a6ee-048c57d392aa)
 
 It renders a squircle with a shader that approximates a signed distance field to
 emulate refraction. With some blur, noise and a bit of glow, it ends up looking
